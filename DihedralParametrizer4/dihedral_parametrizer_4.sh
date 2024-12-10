@@ -77,6 +77,25 @@ echo "version: v4" >> rendered_wano.yml
 cp rendered_wano.yml output_dict.yml
 
 
+export Engine="{{ wano["DFT_options"]["Engine"] }}"
+
+if [ "$Engine" == "PySCF" ]
+then
+    mv rendered_wano.yml tmp_rendered_wano.yml
+    memory_per_thread=$(( ($UC_MEMORY_PER_NODE + $UC_PROCESSORS_PER_NODE - 1) / $UC_PROCESSORS_PER_NODE ))
+    awk -v mem="$memory_per_thread" '
+    /Functional:/ {
+        print $0;
+        print "  memory_per_thread: " mem;
+        next;
+    }
+    { print $0 }
+    ' "tmp_rendered_wano.yml" > rendered_wano.yml
+
+
+fi
+
+
 mpirun --bind-to none $NMMPIARGS $ENVCOMMAND --hostfile $HOSTFILE --mca btl self,vader,tcp python -m mpi4py `which DihedralParametrizer` rendered_wano.yml >> mainout.txt 2> dhp_mpi_stderr
 
 if [ "$DepositOpt" == "from_deposit" ]
