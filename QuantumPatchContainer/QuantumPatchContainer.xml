@@ -1,0 +1,23 @@
+<WaNoTemplate>
+    <WaNoRoot name="QuantumPatchContainer">
+        <WaNoFile logical_filename="morphology.cml" name="Morphology">Put .cml file here</WaNoFile>
+        <WaNoFile logical_filename="settings_ng.yml" name="settings file">Put settings_ng.yml here</WaNoFile>
+        <WaNoString name="micromamba env name">nmsci-2024.3</WaNoString>
+    </WaNoRoot>
+    <WaNoExecCommand>
+simstack_server_mamba_source
+$MAMBA_EXE activate {{wano["micromamba env name"]}}
+which python
+sed -i 's/\([[:space:]]*morphology:\)[[:space:]]*.*/\1 {{wano["Morphology"]}}/' settings_ng.yml
+bash ./init.sh
+    </WaNoExecCommand>
+    <WaNoInputFiles>
+        <WaNoInputFile logical_filename="init.sh">init.sh</WaNoInputFile>
+        <WaNoInputFile logical_filename="report_template.body">report_template.body</WaNoInputFile>
+    </WaNoInputFiles>
+    <WaNoOutputFiles>
+        <WaNoOutputFile>Analysis.zip</WaNoOutputFile>
+        <WaNoOutputFile>Analysis/GSP/partial_charges.yml</WaNoOutputFile>
+        <WaNoOutputFile>Analysis/GSP/core_shell.cml</WaNoOutputFile>
+    </WaNoOutputFiles>
+</WaNoTemplate>
