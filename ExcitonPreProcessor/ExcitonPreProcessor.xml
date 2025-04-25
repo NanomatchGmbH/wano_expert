@@ -68,10 +68,17 @@
                                 <Entry id="17">B2PLYP</Entry>
                                 <Entry id="18">wB97</Entry>
                                 <Entry id="19">wB97X</Entry>
-                                <Entry id="20">CAM-B3LYP</Entry>
-                                <Entry id="21">wPBEH_own</Entry> 
-                                <Entry id="22">wPBE_own</Entry> 
-                                <Entry id="23">CAM-B3LYP_own</Entry> 
+                                <Entry id="20">wB97X-D</Entry>
+                                <Entry id="21">wB97X-V</Entry>
+                                <Entry id="22">wB97M-V</Entry>
+                                <Entry id="23">CAM-B3LYP</Entry>
+                                <Entry id="24">wPBEH_own</Entry>
+                                <Entry id="25">wPBE_own</Entry>
+                                <Entry id="26">CAM-B3LYP_own</Entry>
+                                <Entry id="27">LH20T</Entry>
+                                <Entry id="28">TMHF</Entry>
+                                <Entry id="29">LH12CT-F</Entry>
+                                <Entry id="30">WLH22T</Entry>
                             </WaNoDropDown>
                             <WaNoDropDown name="Basis">
                                 <Entry id="0">STO-3G</Entry>
