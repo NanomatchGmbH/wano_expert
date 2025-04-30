@@ -4,11 +4,13 @@
   <WaNoFile logical_filename="molecule.spf" name="Molecule_spf">spf file here</WaNoFile>  
   <WaNoDictBox name="DFT_options">
    <WaNoDropDown name="Engine">
-    <Entry id="0">DFTBplus</Entry>
-    <Entry id="1">XTBEngine</Entry>
-    <Entry id="2" chosen="true">Turbomole</Entry>
+    <Entry id="0" chosen="true">PySCF</Entry>
+    <Entry id="1">DFTBplus</Entry>
+    <Entry id="2">XTBEngine</Entry>
+    <Entry id="3">Turbomole</Entry>
    </WaNoDropDown>
-    <WaNoDropDown visibility_condition="'%s' == 'Turbomole'" visibility_var_path="DFT_options.Engine" name="Functional">
+   <WaNoSwitch switch_path="DFT_options.Engine" name="FunctionalSwitch" >
+     <WaNoDropDown switch_name="Turbomole" name="Functional">
         <Entry id="0">SVWN</Entry>
         <Entry id="1">SVWN_Gaussian</Entry>
         <Entry id="2">PWLDA</Entry>
@@ -31,7 +33,22 @@
         <Entry id="19">wB97X</Entry>
         <Entry id="20">CAM-B3LYP</Entry>
     </WaNoDropDown>
-    <WaNoDropDown visibility_condition="'%s' == 'Turbomole'" visibility_var_path="DFT_options.Engine" name="Basis">
+    <WaNoDropDown switch_name="PySCF" name="Functional">
+           <Entry id="0">B3LYP</Entry>
+          <Entry id="1" chosen="true">BP86</Entry>
+          <Entry id="2">PBE0</Entry>
+          <Entry id="3">PBE</Entry>
+          <Entry id="4">PW6B95</Entry>
+          <Entry id="5">REVM11</Entry>
+          <Entry id="6">EOM-CCSD</Entry>
+    </WaNoDropDown>
+    <WaNoInviBox switch_name="XTBEngine" name="Functional">
+    </WaNoInviBox>
+    <WaNoInviBox switch_name="DFTBplus" name="Functional">
+    </WaNoInviBox>
+   </WaNoSwitch>
+   <WaNoSwitch switch_path="DFT_options.Engine" name="BasisSwitch" >
+     <WaNoDropDown switch_name="Turbomole" name="Basis">
         <Entry id="0">STO-3G</Entry>
         <Entry id="1">4-31g hondo</Entry>
         <Entry id="2">6-31g hondo</Entry>
@@ -89,8 +106,28 @@
         <Entry id="54">aug-cc-pVQZ</Entry>
         <Entry id="55">cc-pwVQZ</Entry>
         <Entry id="56">aug-cc-pwVQ</Entry>
-        <Entry id="57">nm-SVPP</Entry>
+        <Entry id="57">nm-SVPP</Entry>´
     </WaNoDropDown>
+    <WaNoDropDown switch_name="PySCF" name="Basis">
+          <Entry id="0">STO-3G</Entry>
+          <Entry id="1">def2-SV(P)</Entry>
+          <Entry id="2" chosen="true">def2-SVP</Entry>
+          <Entry id="3">def2-TZVP</Entry>
+          <Entry id="4">def2-TZVPP</Entry>
+          <Entry id="5">def2-QZVP</Entry>
+          <Entry id="6">def2-QZVPP</Entry>
+          <Entry id="7">cc-pVDZ</Entry>
+          <Entry id="8">cc-pVTZ</Entry>
+          <Entry id="9">cc-pVQZ</Entry>
+          <Entry id="10">aug-cc-pVDZ</Entry>
+          <Entry id="11">aug-cc-pVTZ</Entry>
+          <Entry id="12">aug-cc-pVQZ</Entry>
+    </WaNoDropDown>
+    <WaNoInviBox switch_name="XTBEngine" name="Basis">
+    </WaNoInviBox>
+    <WaNoInviBox switch_name="DFTBplus" name="Basis">
+    </WaNoInviBox>
+   </WaNoSwitch>
     </WaNoDictBox>
     <WaNoDictBox name="forcefield_optimization">
     <WaNoBool name="optimize">True</WaNoBool>
