@@ -30,7 +30,18 @@ if __name__ == "__main__":
         name = engine["Name"]
         first_engine_name = name
         settings = engine["%s Settings" % engine_name]
-        if engine_name == "Turbomole" or engine_name == "Psi4":
+        if engine_name == "Turbomole":
+            entry = {
+                "engine": engine_name,
+                "basis": settings["Basis"],
+                "functional": settings["Functional"],
+                "minbas_func": settings["MinBas Functional"],
+                "threads": settings["Threads"],
+                "memory": settings["Memory (MB)"],
+                "dispersion": settings["D3(BJ) Dispersion Correction"],
+                "charge_model": settings["Partial Charge Method"],
+            }
+        elif engine_name == "Psi4":
             entry = {
                 "engine": engine_name,
                 "basis": settings["Basis"],
